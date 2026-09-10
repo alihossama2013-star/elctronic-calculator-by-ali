@@ -1,0 +1,8 @@
+{
+  "name": "Remix Electronic Calculator",
+  "description": "Comprehensive electronic calculator featuring scientific math computation (Casio fx-991), 2D \u0026 3D geometry solvers, physics formulas, and imperial/metric unit conversion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

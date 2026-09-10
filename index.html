@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Remix Electronic Calculator | Scientific, Geometry & Physics Math Suite</title>
+  <meta name="description" content="Comprehensive electronic calculator featuring scientific math computation (Casio fx-991), 2D & 3D geometry solvers, physics formulas, and imperial/metric unit conversion.">
+  <meta name="keywords" content="electronic calculator, scientific calculator, shape calculator, 3D shape calculator, physics formulas, casio fx-991, unit converter">
+  <meta name="author" content="Remix Electronic Calculator">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:title" content="Remix Electronic Calculator | Scientific, Geometry & Physics">
+  <meta property="og:description" content="Comprehensive electronic calculator featuring scientific math computation (Casio fx-991), 2D & 3D geometry solvers, physics formulas, and imperial/metric unit conversion.">
+  <meta property="og:type" content="website">
+
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Remix Electronic Calculator",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Comprehensive electronic calculator featuring scientific math computation (Casio fx-991), 2D & 3D geometry solvers, physics formulas, and imperial/metric unit conversion."
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="app-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand-wrapper">
+        <svg class="brand-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="currentColor" fill-opacity="0.12"/>
+          <path d="M12 28L20 12L28 28H12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="3" fill="currentColor"/>
+          <rect x="23" y="10" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <div>
+          <h1 class="app-title" id="app-heading">Electronic Calculator</h1>
+          <p class="app-tagline">2D & 3D Geometry • Physics Formulas • Casio fx-991 • Unit Converter</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="theme-toggle-btn" class="btn-theme-toggle" aria-label="Switch between dark and light themes">
+          <span id="theme-icon-container" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </span>
+          <span id="theme-toggle-text">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary Navigation (Horizontal scrollable for 9:16 mobile) -->
+  <nav class="container nav-wrapper" aria-label="Main application sections">
+    <div class="main-nav" role="tablist">
+      <button type="button" class="main-nav-tab active" role="tab" id="tab-shapes" data-target="shape-panel" aria-selected="true" aria-controls="shape-panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 2 22 22 22 12 2"/>
+        </svg>
+        <span>Geometry (2D/3D)</span>
+      </button>
+
+      <button type="button" class="main-nav-tab" role="tab" id="tab-physics" data-target="physics-panel" aria-selected="false" aria-controls="physics-panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 3a9 9 0 0 1 0 18"/>
+          <path d="M3 12a9 9 0 0 1 18 0"/>
+          <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+        </svg>
+        <span>Physics Formulas</span>
+      </button>
+
+      <button type="button" class="main-nav-tab" role="tab" id="tab-sci" data-target="sci-calc-panel" aria-selected="false" aria-controls="sci-calc-panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect width="18" height="20" x="3" y="2" rx="2"/>
+          <line x1="8" x2="16" y1="6" y2="6"/>
+          <line x1="16" x2="16" y1="14" y2="18"/>
+          <path d="M16 10h.01"/>
+          <path d="M12 10h.01"/>
+          <path d="M8 10h.01"/>
+          <path d="M12 14h.01"/>
+          <path d="M8 14h.01"/>
+          <path d="M12 18h.01"/>
+          <path d="M8 18h.01"/>
+        </svg>
+        <span>Casio fx-991</span>
+      </button>
+
+      <button type="button" class="main-nav-tab" role="tab" id="tab-units" data-target="unit-panel" aria-selected="false" aria-controls="unit-panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m16 3 4 4-4 4"/>
+          <path d="M20 7H4"/>
+          <path d="m8 21-4-4 4-4"/>
+          <path d="M4 17h16"/>
+        </svg>
+        <span>Unit Converter</span>
+      </button>
+
+      <button type="button" class="main-nav-tab" role="tab" id="tab-history" data-target="history-panel" aria-selected="false" aria-controls="history-panel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>History (5)</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="container" role="main">
+
+    <!-- ================================================================= -->
+    <!-- PANEL 1: SHAPE CALCULATOR (2D & 3D) -->
+    <!-- ================================================================= -->
+    <section id="shape-panel" class="tool-panel active" role="tabpanel" aria-labelledby="tab-shapes">
+      <div class="panel-header">
+        <h2 class="panel-title">Geometry Calculator</h2>
+        <p class="panel-subtitle">Calculate area, perimeter, volume, and surface area for standard 2D shapes and 3D solids with instant visual formulas.</p>
+      </div>
+
+      <!-- 2D vs 3D Dimension Mode Switch -->
+      <div class="dim-toggle-bar" role="group" aria-label="Geometry Dimension Selector">
+        <button type="button" id="dim-toggle-2d" class="btn-dim-toggle active" aria-pressed="true">
+          2D Shapes (Area & Perimeter)
+        </button>
+        <button type="button" id="dim-toggle-3d" class="btn-dim-toggle" aria-pressed="false">
+          3D Solids (Volume & Surface Area)
+        </button>
+      </div>
+
+      <!-- Shape Selection Chips -->
+      <div class="shape-chips-scroller" id="shape-chips-container" role="radiogroup" aria-label="Select shape">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="tool-grid">
+        <!-- Form & Controls Column -->
+        <div class="tool-card">
+          <div class="card-title">
+            <span id="active-shape-title">Square</span>
+            <span class="badge" style="font-size: 0.75rem; color: var(--text-muted);">Real-time</span>
+          </div>
+
+          <!-- Interactive SVG Diagram -->
+          <div class="shape-diagram-card">
+            <div id="shape-diagram-container"></div>
+            <p id="shape-description" class="shape-description-text"></p>
+          </div>
+
+          <!-- Unit Selector -->
+          <div class="unit-selector-row">
+            <label for="shape-unit-select">Measurement Unit:</label>
+            <select id="shape-unit-select" class="form-select">
+              <option value="cm" selected>Centimeters (cm)</option>
+              <option value="m">Meters (m)</option>
+              <option value="mm">Millimeters (mm)</option>
+              <option value="in">Inches (in)</option>
+              <option value="ft">Feet (ft)</option>
+              <option value="yd">Yards (yd)</option>
+            </select>
+          </div>
+
+          <!-- Inputs Form -->
+          <form id="shape-calc-form" novalidate>
+            <div id="shape-inputs-container">
+              <!-- Dynamically populated per shape -->
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top: 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+              Calculate & Record to History
+            </button>
+          </form>
+        </div>
+
+        <!-- Results & Formulas Column -->
+        <div class="tool-card">
+          <div class="card-title">
+            <span>Computed Measurements</span>
+            <span class="opt-label">Auto-updating</span>
+          </div>
+
+          <div class="results-container">
+            <!-- Primary Result (Area or Volume) -->
+            <div class="result-row">
+              <div class="result-label-group">
+                <span class="result-label" id="shape-primary-label">Computed Area</span>
+                <div class="result-value-display">
+                  <span class="result-number" id="shape-primary-val">25</span>
+                  <span class="result-unit" id="shape-primary-unit">cm²</span>
+                </div>
+              </div>
+              <button type="button" class="btn-outline-sm" id="copy-primary-shape-btn" aria-label="Copy primary calculated measurement">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+
+            <!-- Secondary Result (Perimeter or Surface Area) -->
+            <div class="result-row">
+              <div class="result-label-group">
+                <span class="result-label" id="shape-secondary-label">Computed Perimeter</span>
+                <div class="result-value-display">
+                  <span class="result-number" id="shape-secondary-val">20</span>
+                  <span class="result-unit" id="shape-secondary-unit">cm</span>
+                </div>
+              </div>
+              <button type="button" class="btn-outline-sm" id="copy-secondary-shape-btn" aria-label="Copy secondary calculated measurement">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+
+            <!-- Formula & Step-by-Step Breakdown -->
+            <div class="formula-breakdown-card">
+              <h3 class="formula-breakdown-title">Step-by-Step Formula</h3>
+              <div id="formula-details-content">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANEL 2: PHYSICS FORMULAS CALCULATOR -->
+    <!-- ================================================================= -->
+    <section id="physics-panel" class="tool-panel" role="tabpanel" aria-labelledby="tab-physics">
+      <div class="panel-header">
+        <h2 class="panel-title">Physics Formulas Calculator</h2>
+        <p class="panel-subtitle">Interactive calculations for kinematics, force, dynamics, and energy with visual diagrams and formula derivations.</p>
+      </div>
+
+      <!-- Physics Category Selector -->
+      <div class="dim-toggle-bar physics-cat-bar" role="group" aria-label="Physics Category Selector">
+        <button type="button" id="phys-cat-kinematics" class="btn-dim-toggle active" data-cat="kinematics" aria-pressed="true">
+          Kinematics
+        </button>
+        <button type="button" id="phys-cat-force" class="btn-dim-toggle" data-cat="force" aria-pressed="false">
+          Force & Dynamics
+        </button>
+        <button type="button" id="phys-cat-energy" class="btn-dim-toggle" data-cat="energy" aria-pressed="false">
+          Work & Energy
+        </button>
+      </div>
+
+      <!-- Physics Formula Selection Chips -->
+      <div class="shape-chips-scroller" id="physics-chips-container" role="radiogroup" aria-label="Select physics formula">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="tool-grid">
+        <!-- Form & Controls Column -->
+        <div class="tool-card">
+          <div class="card-title">
+            <span id="active-physics-title">Velocity & Speed</span>
+            <span class="badge" style="font-size: 0.75rem; color: var(--text-muted);">Real-time</span>
+          </div>
+
+          <!-- Interactive Physics Diagram -->
+          <div class="shape-diagram-card physics-diagram-card">
+            <div id="physics-diagram-container"></div>
+            <p id="physics-description" class="shape-description-text"></p>
+          </div>
+
+          <!-- Unit Selector / Mode -->
+          <div class="unit-selector-row" style="justify-content: space-between;">
+            <span style="font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary);">Standard System:</span>
+            <span class="badge" style="font-family: var(--font-mono); font-size: 0.75rem;">SI Metric Units (m, s, N, J, kg)</span>
+          </div>
+
+          <!-- Inputs Form -->
+          <form id="physics-calc-form" novalidate>
+            <div id="physics-inputs-container">
+              <!-- Dynamically populated per formula -->
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top: 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+              Calculate & Record to History
+            </button>
+          </form>
+        </div>
+
+        <!-- Results & Formulas Column -->
+        <div class="tool-card">
+          <div class="card-title">
+            <span>Computed Physics Results</span>
+            <span class="opt-label">Auto-updating</span>
+          </div>
+
+          <div class="results-container">
+            <!-- Primary Result -->
+            <div class="result-row">
+              <div class="result-label-group">
+                <span class="result-label" id="physics-primary-label">Velocity (v)</span>
+                <div class="result-value-display">
+                  <span class="result-number" id="physics-primary-val">0</span>
+                  <span class="result-unit" id="physics-primary-unit">m/s</span>
+                </div>
+              </div>
+              <button type="button" class="btn-outline-sm" id="copy-primary-physics-btn" aria-label="Copy primary calculated measurement">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+
+            <!-- Secondary Result -->
+            <div class="result-row">
+              <div class="result-label-group">
+                <span class="result-label" id="physics-secondary-label">Speed in km/h</span>
+                <div class="result-value-display">
+                  <span class="result-number" id="physics-secondary-val">0</span>
+                  <span class="result-unit" id="physics-secondary-unit">km/h</span>
+                </div>
+              </div>
+              <button type="button" class="btn-outline-sm" id="copy-secondary-physics-btn" aria-label="Copy secondary calculated measurement">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+
+            <!-- Formula & Step-by-Step Breakdown -->
+            <div class="formula-breakdown-card">
+              <h3 class="formula-breakdown-title">Step-by-Step Derivation</h3>
+              <div id="physics-formula-details">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANEL 3: CASIO fx-991 SCIENTIFIC CALCULATOR -->
+    <!-- ================================================================= -->
+    <section id="sci-calc-panel" class="tool-panel" role="tabpanel" aria-labelledby="tab-sci" aria-label="Casio fx-991 Scientific Calculator" tabindex="0">
+      <div class="casio-calculator-wrapper">
+        <div class="casio-case">
+          <!-- Casio Header -->
+          <div class="casio-header">
+            <span class="casio-brand">CASIO</span>
+            <span class="casio-model">fx-991 PLUS</span>
+          </div>
+
+          <!-- LCD Dual-Line Display -->
+          <div class="casio-screen" aria-live="polite">
+            <div class="casio-screen-indicators">
+              <span id="casio-mode-badge" class="casio-indicator active">DEG</span>
+              <span id="casio-mem-badge" class="casio-indicator" style="opacity: 0;">M</span>
+              <span class="casio-indicator">MATH</span>
+            </div>
+            <div id="casio-expr-line" class="casio-expr-line"></div>
+            <div id="casio-result-line" class="casio-result-line">0</div>
+          </div>
+
+          <!-- Casio Keypad Grid -->
+          <div class="casio-keypad" id="casio-keypad">
+            <!-- Row 1: Shift, Mode, Memory Keys -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-shift" data-action="shift-toggle" aria-label="Shift toggle">SHIFT</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-angle" data-action="toggle-angle" aria-label="Toggle degrees or radians">DEG/RAD</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-m-plus" data-action="mem-add" aria-label="Add to memory">M+</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-mr" data-action="mem-recall" aria-label="Recall memory">MR</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-mc" data-action="mem-clear" aria-label="Clear memory">MC</button>
+            </div>
+
+            <!-- Row 2: Fraction, Powers, Roots, S-D -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-frac" data-action="fraction" aria-label="Fraction (a/b)">■/□</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-sq" data-action="insert" data-val="^2" aria-label="Square (x²)">x²</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-pow" data-action="insert" data-val="^" aria-label="Exponentiation (xʸ)">xʸ</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-root" data-action="insert-func" data-val="sqrt" aria-label="Square root (√)">√</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-sd" data-action="sd-toggle" aria-label="Standard to Decimal toggle (S-D)">S⇔D</button>
+            </div>
+
+            <!-- Row 3: Trig & Logs -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-sin" data-action="insert-func" data-val="sin" aria-label="Sine">sin</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-cos" data-action="insert-func" data-val="cos" aria-label="Cosine">cos</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-tan" data-action="insert-func" data-val="tan" aria-label="Tangent">tan</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-ln" data-action="insert-func" data-val="ln" aria-label="Natural logarithm (ln)">ln</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-log" data-action="insert-func" data-val="log" aria-label="Common logarithm (log10)">log</button>
+            </div>
+
+            <!-- Row 4: Inverse Trig & Exponentials -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-asin" data-action="insert-func" data-val="asin" aria-label="Inverse sine">sin⁻¹</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-acos" data-action="insert-func" data-val="acos" aria-label="Inverse cosine">cos⁻¹</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-atan" data-action="insert-func" data-val="atan" aria-label="Inverse tangent">tan⁻¹</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-exp" data-action="insert-func" data-val="exp" aria-label="Natural exponential (eˣ)">eˣ</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-pow10" data-action="insert" data-val="10^" aria-label="Power of 10 (10ˣ)">10ˣ</button>
+            </div>
+
+            <!-- Row 5: Parens, Combinatorics, Factorial -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-open-paren" data-action="insert" data-val="(" aria-label="Open parenthesis">(</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-close-paren" data-action="insert" data-val=")" aria-label="Close parenthesis">)</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-ncr" data-action="insert" data-val="nCr" aria-label="Combinations (nCr)">nCr</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-npr" data-action="insert" data-val="nPr" aria-label="Permutations (nPr)">nPr</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-fact" data-action="insert" data-val="!" aria-label="Factorial (x!)">x!</button>
+            </div>
+
+            <!-- Row 6: Constants & Clear Keys -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-pi" data-action="insert" data-val="π" aria-label="Pi constant">π</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-e" data-action="insert" data-val="e" aria-label="Euler constant (e)">e</button>
+              <button type="button" class="casio-btn casio-btn-func" id="btn-casio-abs" data-action="insert-func" data-val="abs" aria-label="Absolute value">abs</button>
+              <button type="button" class="casio-btn casio-btn-del" id="btn-casio-del" data-action="backspace" aria-label="Delete last character">DEL</button>
+              <button type="button" class="casio-btn casio-btn-ac" id="btn-casio-ac" data-action="clear" aria-label="All clear">AC</button>
+            </div>
+
+            <!-- Row 7: 7, 8, 9, Multiply, Divide -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-7" data-action="insert" data-val="7">7</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-8" data-action="insert" data-val="8">8</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-9" data-action="insert" data-val="9">9</button>
+              <button type="button" class="casio-btn casio-btn-op" id="btn-casio-mul" data-action="insert" data-val="×" aria-label="Multiply">×</button>
+              <button type="button" class="casio-btn casio-btn-op" id="btn-casio-div" data-action="insert" data-val="÷" aria-label="Divide">÷</button>
+            </div>
+
+            <!-- Row 8: 4, 5, 6, Add, Subtract -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-4" data-action="insert" data-val="4">4</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-5" data-action="insert" data-val="5">5</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-6" data-action="insert" data-val="6">6</button>
+              <button type="button" class="casio-btn casio-btn-op" id="btn-casio-add" data-action="insert" data-val="+" aria-label="Add">+</button>
+              <button type="button" class="casio-btn casio-btn-op" id="btn-casio-sub" data-action="insert" data-val="-" aria-label="Subtract">−</button>
+            </div>
+
+            <!-- Row 9: 1, 2, 3, Ans, Equals -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-1" data-action="insert" data-val="1">1</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-2" data-action="insert" data-val="2">2</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-3" data-action="insert" data-val="3">3</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-ans" data-action="ans" aria-label="Previous answer">Ans</button>
+              <button type="button" class="casio-btn casio-btn-eq" id="btn-casio-eq" data-action="calculate" aria-label="Calculate">=</button>
+            </div>
+
+            <!-- Row 10: 0, Point, Negative, Copy Result -->
+            <div class="casio-row">
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-0" data-action="insert" data-val="0" style="grid-column: span 2;">0</button>
+              <button type="button" class="casio-btn casio-btn-num" id="btn-casio-dot" data-action="insert" data-val=".">.</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="btn-casio-neg" data-action="insert" data-val="(-)" aria-label="Negate">(-)</button>
+              <button type="button" class="casio-btn casio-btn-fn" id="copy-sci-btn" style="background: #0284c7; color:#fff;" aria-label="Copy scientific calculator result">
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Physical Keyboard Shortcuts Reference Banner -->
+        <div class="casio-keyboard-banner" id="casio-keyboard-banner" aria-label="Physical keyboard shortcuts guide">
+          <div class="casio-kbd-header">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M8 16h8"/>
+            </svg>
+            <span class="casio-kbd-title">Physical Keyboard Enabled</span>
+          </div>
+          <div class="casio-kbd-shortcuts">
+            <span class="casio-kbd-tag"><kbd>0</kbd>–<kbd>9</kbd> Digits</span>
+            <span class="casio-kbd-tag"><kbd>+</kbd> <kbd>−</kbd> <kbd>*</kbd>/<kbd>x</kbd> <kbd>/</kbd> <kbd>^</kbd> Operators</span>
+            <span class="casio-kbd-tag"><kbd>Enter</kbd> / <kbd>=</kbd> Equals</span>
+            <span class="casio-kbd-tag"><kbd>Backspace</kbd> DEL</span>
+            <span class="casio-kbd-tag"><kbd>Esc</kbd> AC</span>
+            <span class="casio-kbd-tag"><kbd>s</kbd> sin</span>
+            <span class="casio-kbd-tag"><kbd>c</kbd> cos</span>
+            <span class="casio-kbd-tag"><kbd>t</kbd> tan</span>
+            <span class="casio-kbd-tag"><kbd>r</kbd> √</span>
+            <span class="casio-kbd-tag"><kbd>p</kbd> π</span>
+            <span class="casio-kbd-tag"><kbd>e</kbd> e</span>
+            <span class="casio-kbd-tag"><kbd>a</kbd> Ans</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANEL 4: UNIT CONVERTER -->
+    <!-- ================================================================= -->
+    <section id="unit-panel" class="tool-panel" role="tabpanel" aria-labelledby="tab-units">
+      <div class="panel-header">
+        <h2 class="panel-title">Multi-Unit Converter</h2>
+        <p class="panel-subtitle">Accurate, bidirectional conversion for mass, volume, and distance across imperial and metric measurement systems.</p>
+      </div>
+
+      <div class="tool-grid">
+        <!-- Converter Form -->
+        <div class="tool-card conv-tool-card">
+          <!-- Category selection -->
+          <div class="converter-categories" role="tablist" aria-label="Measurement categories">
+            <button type="button" class="converter-category-tab active" data-category="mass" role="tab" aria-selected="true">
+              Mass & Weight
+            </button>
+            <button type="button" class="converter-category-tab" data-category="volume" role="tab" aria-selected="false">
+              Volume & Capacity
+            </button>
+            <button type="button" class="converter-category-tab" data-category="distance" role="tab" aria-selected="false">
+              Distance & Length
+            </button>
+          </div>
+
+          <form id="unit-calc-form">
+            <div class="conv-inputs-grid">
+              <!-- From unit box -->
+              <div class="conv-box conv-box-from">
+                <div class="conv-box-header">
+                  <label for="conv-from-value" class="form-label" style="margin-bottom:0;">From</label>
+                  <span class="conv-box-hint">Source Amount</span>
+                </div>
+                <div class="conv-input-row">
+                  <input type="number" id="conv-from-value" class="form-input conv-val-input" value="1" step="any" required placeholder="1" inputmode="decimal">
+                  <select id="conv-from-unit" class="form-select conv-unit-select" aria-label="From Unit"></select>
+                </div>
+              </div>
+
+              <!-- Swap Button -->
+              <div class="conv-swap-col">
+                <button type="button" id="conv-swap-btn" class="btn-swap-units" aria-label="Swap source and target units" title="Swap units">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 5h18"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 19H3"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- To unit box -->
+              <div class="conv-box conv-box-to">
+                <div class="conv-box-header">
+                  <label for="conv-to-value" class="form-label" style="margin-bottom:0;">To</label>
+                  <span class="conv-box-hint">Converted Result</span>
+                </div>
+                <div class="conv-input-row">
+                  <input type="text" id="conv-to-value" class="form-input conv-val-input conv-result-input" readonly aria-readonly="true">
+                  <select id="conv-to-unit" class="form-select conv-unit-select" aria-label="To Unit"></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="conv-actions-row">
+              <button type="submit" class="btn-primary conv-submit-btn">
+                Convert & Add to History
+              </button>
+              <button type="button" id="copy-conv-btn" class="btn-outline-sm conv-copy-btn" aria-label="Copy converted result">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+          </form>
+
+          <div id="conv-formula-display">
+            <!-- Dynamic conversion ratio details -->
+          </div>
+        </div>
+
+        <!-- Quick Reference Table -->
+        <div class="tool-card quick-ref-card">
+          <div class="card-title">
+            <span id="quick-ref-header">Quick Reference Table</span>
+            <span class="opt-label">Reference</span>
+          </div>
+          <div class="quick-ref-table-wrapper">
+            <table class="quick-ref-table" aria-label="Quick reference values">
+              <tbody id="quick-ref-table-body">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PANEL 5: CALCULATION HISTORY (LAST 5 CALCULATIONS) -->
+    <!-- ================================================================= -->
+    <section id="history-panel" class="tool-panel" role="tabpanel" aria-labelledby="tab-history">
+      <div class="panel-header">
+        <h2 class="panel-title">Recent Calculations</h2>
+        <p class="panel-subtitle">Temporary in-memory history of your last 5 calculations across geometry, physics formulas, scientific math, and unit conversions. Cleared when page reloads.</p>
+      </div>
+
+      <div class="tool-card history-card" style="max-width: 680px; margin: 0 auto;">
+        <div class="card-title">
+          <span>Last 5 Operations</span>
+          <button type="button" id="clear-history-btn" class="btn-outline-sm" aria-label="Clear calculation history">
+            Clear History
+          </button>
+        </div>
+
+        <p id="history-empty-msg" class="history-empty-msg">No calculations performed yet. Calculate a shape, convert a unit, or run a math expression to see history here.</p>
+        <ul id="history-list" class="history-list" aria-label="Recent calculations list">
+          <!-- Injected via JavaScript -->
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast-notification" class="toast-notification" role="status" aria-live="polite">
+    Copied to clipboard!
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

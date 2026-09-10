@@ -1,0 +1,5 @@
+# robots.txt for Shape Calculator & Unit Converter
+User-agent: *
+Allow: /
+
+Sitemap: https://shape-unit-calculator.local/sitemap.xml
